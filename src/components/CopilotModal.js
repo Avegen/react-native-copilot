@@ -28,6 +28,7 @@ type Props = {
   svgMaskPath?: SvgMaskPathFn,
   stopOnOutsideClick?: boolean,
   arrowColor?: string,
+  centerArrow?: boolean
 };
 
 type State = {
@@ -59,6 +60,7 @@ class CopilotModal extends Component<Props, State> {
     labels: {},
     stopOnOutsideClick: false,
     arrowColor: '#fff',
+    centerArrow: false
   };
 
   state = {
@@ -148,16 +150,21 @@ class CopilotModal extends Component<Props, State> {
       arrow.bottom = tooltip.bottom - (ARROW_SIZE * 2);
     }
 
+    if (this.props.centerArrow)
+      arrow.left = center.x - ARROW_SIZE
+
     if (horizontalPosition === 'left') {
       tooltip.right = Math.max(layout.width - (obj.left + obj.width), 0);
       tooltip.right = tooltip.right === 0 ? tooltip.right + MARGIN : tooltip.right;
       tooltip.maxWidth = layout.width - tooltip.right - MARGIN;
-      arrow.right = tooltip.right + MARGIN;
+      if (!this.props.centerArrow)
+        arrow.right = tooltip.right + MARGIN;
     } else {
       tooltip.left = Math.max(obj.left, 0);
       tooltip.left = tooltip.left === 0 ? tooltip.left + MARGIN : tooltip.left;
       tooltip.maxWidth = layout.width - tooltip.left - MARGIN;
-      arrow.left = tooltip.left + MARGIN;
+      if (!this.props.centerArrow)
+        arrow.left = tooltip.left + MARGIN;
     }
 
     const animate = {

@@ -33,7 +33,15 @@ Creation of this project was sponsored by **[OK GROW!](https://www.okgrow.com/)*
 ## Installation
 
 ```
-npm install --save react-native-copilot
+# in package.json
+"dependencies": {
+  ...
+  "react-native-copilot": "git+ssh://git@github.com:Avegen/react-native-copilot.git",
+  ...
+}
+
+# then in shell
+yarn install
 ```
 
 **Optional**: If you want to have the smooth SVG animation, you should install and link `react-native-svg`. If you are using Expo, **you can skip** this as Expo comes with `react-native-svg`.

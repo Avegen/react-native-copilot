@@ -70,6 +70,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       arrowColor = "#fff",
       arrowSize = ARROW_SIZE,
       margin = MARGIN,
+      centerArrow = false,
     },
     ref,
   ) {
@@ -173,6 +174,10 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
           arrow.bottom = tooltip.bottom - arrowSize * 2;
         }
 
+        if (centerArrow) {
+          arrow.left = center.x - ARROW_SIZE;
+        }
+
         if (horizontalPosition === "left") {
           tooltip.right = Math.max(
             newMeasuredLayout.width - (rect.x + rect.width),
@@ -181,13 +186,17 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
           tooltip.right =
             tooltip.right === 0 ? tooltip.right + margin : tooltip.right;
           tooltip.maxWidth = newMeasuredLayout.width - tooltip.right - margin;
-          arrow.right = tooltip.right + margin;
+          if (!centerArrow) {
+            arrow.right = tooltip.right + margin;
+          }
         } else {
           tooltip.left = Math.max(rect.x, 0);
           tooltip.left =
             tooltip.left === 0 ? tooltip.left + margin : tooltip.left;
           tooltip.maxWidth = newMeasuredLayout.width - tooltip.left - margin;
-          arrow.left = tooltip.left + margin;
+          if (!centerArrow) {
+            arrow.left = tooltip.left + margin;
+          }
         }
 
         sanitize(arrow);

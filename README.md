@@ -31,11 +31,15 @@
 ## Installation
 
 ```
-yarn add react-native-copilot
+# in package.json
+"dependencies": {
+  ...
+  "react-native-copilot": "git+ssh://git@github.com:Avegen/react-native-copilot.git",
+  ...
+}
 
-# or with npm:
-
-npm install --save react-native-copilot
+# then in shell
+yarn install
 ```
 
 **Optional**: If you want to have the smooth SVG animation, you should install and link [`react-native-svg`](https://github.com/software-mansion/react-native-svg).
